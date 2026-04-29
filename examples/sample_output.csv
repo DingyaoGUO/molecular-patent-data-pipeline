@@ -1,0 +1,4 @@
+Patent ID,Compound,Target,Assay,IC50_nM,Cell Line,SMILES
+PATENT001,1,BRD4,Binding assay,50,HEK293,CCO
+PATENT001,2,BRD4,Binding assay,120,HEK293,c1ccccc1
+PATENT001,3,CRBN,Degradation assay,35,MM.1S,CC(=O)O
