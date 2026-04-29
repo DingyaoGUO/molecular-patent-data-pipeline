@@ -2,99 +2,58 @@
 
 ## Overview
 
-This project presents a data processing pipeline for extracting and structuring experimental and molecular information from pharmaceutical patents. The workflow integrates manual curation, large language models, and cheminformatics tools to build a structured molecular dataset.
+This project is a Python-based pipeline for organizing pharmaceutical patent files and extracting compound-level molecular information into structured datasets.
 
-The pipeline is designed to:
+The pipeline supports:
 
-* Extract experimental data from patent documents
-* Organize and structure compound-level information
-* Convert molecular structures into canonical SMILES
-* Automate data integration into Excel-based datasets
+- organizing patent PDF files into individual folders
+- matching Excel files to patent folders using patent IDs
+- extracting molecular structures from SDF files
+- converting SDF structures into canonical SMILES using RDKit
+- matching SMILES with compound identifiers
+- generating structured compound-level datasets for downstream analysis
+
+No confidential patent data is included in this repository. All example files are synthetic.
 
 ---
 
 ## Workflow
 
-### 1. Experimental Data Extraction
-
-Patent PDFs are manually screened for key experimental metrics:
-
-* IC50, EC50, DC50, Dmax
-* Binding constants (Kd, Ki)
-* Degradation data
-
-Relevant tables and descriptions are:
-
-* Extracted as images
-* Converted into structured CSV using LLMs
-* Parsed into Excel format
-
----
-
-### 2. Molecular Structure Extraction
-
-* Patent PDFs are processed using structure extraction tools (e.g., αExtractor)
-* Molecular structures are exported as `.sdf` files
-* Each molecule includes a reference label (Coreference)
-
----
-
-### 3. Data Integration
-
-* Excel tables are constructed with:
-
-  * Patent ID
-  * Compound / Example identifiers
-  * Experimental data
-* Data is cleaned, deduplicated, and standardized
-
----
-
-### 4. Automated SMILES Extraction
-
-Using RDKit:
-
-* Parse `.sdf` files
-* Convert structures into canonical SMILES
-* Match SMILES with compound identifiers
-* Append results to Excel datasets
-
----
-
-### 5. File Organization
-
-Python scripts automate:
-
-* Organizing PDFs into folders
-* Matching Excel files to patent directories
-* Batch processing datasets
+```text
+Patent PDF
+   ↓
+Manual screening for experimental data
+   ↓
+Experimental table extraction
+   ↓
+SDF molecular structure extraction
+   ↓
+RDKit-based SMILES conversion
+   ↓
+Final structured dataset
 
 ---
 
 ## Project Structure
 
-```bash
+```
 src/
-    organize_pdfs.py      # organize PDF files into folders
-    move_excels.py        # match Excel files to patent folders
-    extract_smiles.py     # extract SMILES from SDF
-    batch_pipeline.py     # batch processing pipeline
+    organize_pdfs.py
+    move_excels.py
+    extract_smiles.py
 
 examples/
-    sample_data.xlsx
+    sample_data.csv
     sample_structures.sdf
-    sample_output.xlsx
+    sample_output.csv
+    
 ```
-
----
 
 ## Installation
 
 ```bash
 pip install -r requirements.txt
 ```
-
----
 
 ## Usage
 
